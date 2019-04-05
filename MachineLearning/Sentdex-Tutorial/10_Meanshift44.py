@@ -1,92 +1,73 @@
-
-import numpy as np
-from sklearn.cluster import MeanShift, KMeans
-from sklearn import preprocessing, model_selection
-import pandas as pd
 import matplotlib.pyplot as plt
+from matplotlib import style
+style.use('ggplot')
+import numpy as np
 
+X = np.array([[1,2], [1.5,1.8], [5,8], [8,8], [1, 0.6], [9,11], [8,2], [10,2], [9,3]])
 
-'''
-Pclass Passenger Class (1 = 1st; 2 = 2nd; 3 = 3rd)
-survival Survival (0 = No; 1 = Yes)
-name Name
-sex Sex
-age Age
-sibsp Number of Siblings/Spouses Aboard
-parch Number of Parents/Children Aboard
-ticket Ticket Number
-fare Passenger Fare (British pound)
-cabin Cabin
-embarked Port of Embarkation (C = Cherbourg; Q = Queenstown; S = Southampton)
-boat Lifeboat
-body Body Identification Number
-home.dest Home/Destination
-'''
+# plt.scatter(X[:,0], X[:,1], s=150)
+# plt.show()
 
+colors = 10*['g', 'r', 'c', 'b', 'k']
 
-# https://pythonprogramming.net/static/downloads/machine-learning-data/titanic.xls
-df = pd.read_excel('titanic.xls')
-
-original_df = pd.DataFrame.copy(df)
-df.drop(['body','name'], 1, inplace=True)
-df.fillna(0,inplace=True)
-
-def handle_non_numerical_data(df):
+class Mean_Shift:
+    def __init__(self, radius=None, radius_norm_step=100):
+        self.radius = radius
+        self.radius_norm_step = radius_norm_step
     
-    # handling non-numerical data: must convert.
-    columns = df.columns.values
+    def fit(self, data):
 
-    for column in columns:
-        text_digit_vals = {}
-        def convert_to_int(val):
-            return text_digit_vals[val]
+        if self.radius == None:
+            all_data_centroid = np.average(data, axis=0)
+            all_data_norm = np.linalg.norm(all_data_centroid)
+            self.radius = all_data_norm / self.radius_norm_step
 
-        #print(column,df[column].dtype)
-        if df[column].dtype != np.int64 and df[column].dtype != np.float64:
+        centroids = {}
+        weights = [i for i in range(self.radius_norm_step)][::-1] #reversed step
+
+        while True:
+            new_centroids = []
+            for i in centroids:
+                in_bandwidth = []
+                centroid = centroids[i]
+
+                for featureset in data:
+                    if np.linalg.norm(featureset-centroid) < self.radius:
+                        in_bandwidth.append(featureset)
+                new_centroid = np.average(in_bandwidth, axis=0)
+                new_centroids.append(tuple(new_centroid))
             
-            column_contents = df[column].values.tolist()
-            #finding just the uniques
-            unique_elements = set(column_contents)
-            # great, found them. 
-            x = 0
-            for unique in unique_elements:
-                if unique not in text_digit_vals:
-                    # creating dict that contains new
-                    # id per unique string
-                    text_digit_vals[unique] = x
-                    x+=1
-            # now we map the new "id" vlaue
-            # to replace the string. 
-            df[column] = list(map(convert_to_int,df[column]))
+            uniques = sorted(list(set(new_centroids)))
+            prev_centroids = dict(centroids)
 
-    return df
+            centroids = {}
+            for i in range(len(uniques)):
+                centroids[i] = np.array(uniques[i])
+            
+            optimized = True
 
-df = handle_non_numerical_data(df)
-df.drop(['ticket','home.dest'], 1, inplace=True)
+            for i in centroids:
+                if not np.array_equal(centroids[i], prev_centroids[i]):
+                    optimized = False
+                if not optimized:
+                    break
+            
+            if optimized:
+                break
+        
+        self.centroids = centroids
 
-X = np.array(df.drop(['survived'], 1).astype(float))
-X = preprocessing.scale(X)
-y = np.array(df['survived'])
+    def predict(self, data):
+        pass
 
-clf = MeanShift()
+clf = Mean_Shift()
 clf.fit(X)
 
-labels = clf.labels_
-cluster_centers = clf.cluster_centers_
+centroids = clf.centroids
+plt.scatter(X[:,0], X[:,1], s=150)
 
-original_df['cluster_group'] = np.nan
+for c in centroids:
+    plt.scatter(centroids[c][0], centroids[c][1], color='k', marker='*', s=150)
 
-for i in range(len(X)):
-    original_df['cluster_group'].iloc[i]=labels[i]
-
-n_clusters_ = len(np.unique(labels))
-survival_rates = {}
-for i in range(n_clusters_):
-    temp_df = original_df[(original_df['cluster_group']==float(i))]
-    survival_cluster = temp_df[(temp_df['survived']==1)]
-    survival_rate = len(survival_cluster)/len(temp_df)
-    survival_rates[i] = survival_rate
-
-print(original_df[(original_df['cluster_group']==4)])
-print(survival_rates)
-
+plt.show()
+        
