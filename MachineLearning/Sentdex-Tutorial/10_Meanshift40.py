@@ -66,6 +66,7 @@ df.drop(['ticket','home.dest'], 1, inplace=True)
 
 X = np.array(df.drop(['survived'], 1).astype(float))
 X = preprocessing.scale(X)
+#preprocessing을 하면 스케일링을 하는데 스케일링에 따라서 확률이 20~75%까지 변한다
 y = np.array(df['survived'])
 
 clf = MeanShift()
@@ -77,7 +78,7 @@ cluster_centers = clf.cluster_centers_
 original_df['cluster_group'] = np.nan
 
 for i in range(len(X)):
-    original_df['cluster_group'].iloc[i]=labels[i]
+    original_df['cluster_group'].iloc[i]=labels[i] #iloc[i] row의 i번째 데이터를 가져온다
 
 n_clusters_ = len(np.unique(labels))
 survival_rates = {}
