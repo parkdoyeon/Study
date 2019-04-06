@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1549083524768.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1895961544",
+    "id" : "372C50BF",
+    "lastKnownWriteTime" : 1550384698,
+    "last_content_update" : 1550384698391,
+    "path" : "~/Dev/restore_pkg/chap11.R",
+    "project_path" : "chap11.R",
+    "properties" : {
+        "cursorPosition" : "43,22",
+        "scrollLine" : "0",
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

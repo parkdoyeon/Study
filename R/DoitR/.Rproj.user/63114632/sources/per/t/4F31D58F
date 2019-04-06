@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1549356861266.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3390269449",
+    "id" : "4F31D58F",
+    "lastKnownWriteTime" : 1550384704,
+    "last_content_update" : 1550384704113,
+    "path" : "~/Dev/restore_pkg/chapt15.R",
+    "project_path" : "chapt15.R",
+    "properties" : {
+        "cursorPosition" : "13,0",
+        "scrollLine" : "4",
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

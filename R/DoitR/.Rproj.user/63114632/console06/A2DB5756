@@ -1,0 +1,11 @@
+]0;~/Dev/restore_pkg[?1034hbagdoyeon-ui-MacBook-Pro:restore_pkg doyeon$ [Kbagdoyeon-ui-MacBook-Pro:restore_pkg doyeon$ dyn.load('/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/jre/lib/server/libj vm.dylib')
+bash: syntax error near unexpected token `'/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/jre/lib/server/libjvm.dylib''
+]0;~/Dev/restore_pkgbagdoyeon-ui-MacBook-Pro:restore_pkg doyeon$ `dyn.load('/Library/Java/JavaVirtualMachines/jdk-11.0.2.jdk/Contents/Home/jre/lib/server/libjv m.dylib')`
+bash: command substitution: line 1: syntax error near unexpected token `'/Library/Java/JavaVirtualMachines/jdk-11.0.2.jdk/Contents/Home/jre/lib/server/libjvm.dylib''
+bash: command substitution: line 1: `dyn.load('/Library/Java/JavaVirtualMachines/jdk-11.0.2.jdk/Contents/Home/jre/lib/server/libjvm.dylib')'
+]0;~/Dev/restore_pkgbagdoyeon-ui-MacBook-Pro:restore_pkg doyeon$ dyn.load('/Library/Java/JavaVirtualMachines/jdk-11.0.2.jdk/Contents/Home/jre/lib/server/libjvm .dylib')
+bash: syntax error near unexpected token `'/Library/Java/JavaVirtualMachines/jdk-11.0.2.jdk/Contents/Home/jre/lib/server/libjvm.dylib''
+]0;~/Dev/restore_pkgbagdoyeon-ui-MacBook-Pro:restore_pkg doyeon$ 
+]0;~/Dev/restore_pkgbagdoyeon-ui-MacBook-Pro:restore_pkg doyeon$ dyn.load('/Library/Java/JavaVirtualMachines/jdk-11.0.2.jdk/Contents/Home/jre/lib/server/libjvm .dylib')
+bash: syntax error near unexpected token `'/Library/Java/JavaVirtualMachines/jdk-11.0.2.jdk/Contents/Home/jre/lib/server/libjvm.dylib''
+]0;~/Dev/restore_pkgbagdoyeon-ui-MacBook-Pro:restore_pkg doyeon$ 

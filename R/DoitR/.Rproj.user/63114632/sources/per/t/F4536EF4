@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1548590536688.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "667904374",
+    "id" : "F4536EF4",
+    "lastKnownWriteTime" : 1549889698,
+    "last_content_update" : 1549889698,
+    "path" : "~/Dev/restore_pkg/chap8.R",
+    "project_path" : "chap8.R",
+    "properties" : {
+        "cursorPosition" : "6,7",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
