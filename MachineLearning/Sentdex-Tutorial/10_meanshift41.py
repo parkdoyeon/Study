@@ -17,12 +17,14 @@ class Mean_Shift:
     def fit(self, data):
         centroids = {}
 
+        for i in range(len(data)):
+            centroids[i] = data[i]
+        
         while True:
             new_centroids = []
             for i in centroids:
                 in_bandwidth = []
                 centroid = centroids[i]
-
                 for featureset in data:
                     if np.linalg.norm(featureset-centroid) < self.radius:
                         in_bandwidth.append(featureset)
