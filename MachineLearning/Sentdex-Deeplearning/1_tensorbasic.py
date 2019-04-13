@@ -17,6 +17,8 @@ with tf.Session() as sess:
 print(output) #세션이 닫혀도 레퍼런스 결과가 출력됨
 # print(sess.run(result)) 하지만 닫힌 오브젝트는 출력될 수 없음
 
+# cost가 들어가는 function을 최적화 해달라고 텐서에게 요청하는 것 
+
 # sess.close()
 # session은 connection object이다
 
