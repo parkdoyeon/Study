@@ -21,5 +21,3 @@ print(output) #세션이 닫혀도 레퍼런스 결과가 출력됨
 
 # sess.close()
 # session은 connection object이다
-
-
