@@ -2,7 +2,7 @@ import tensorflow as tf
 import pickle
 import numpy as np
 import nltk
-from nltk.tokenize import word_tokenize
+from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.stem import WordNetLemmatizer
 import getdata
 lemmatizer = WordNetLemmatizer()
@@ -11,20 +11,17 @@ n_nodes_hl1 = 500
 n_nodes_hl2 = 500
 
 n_classes = 2
-# 200 data, 10 epoch -> 52% accuracy
-# 2000 data, 10 epoch -> 62% accuracy
-# 2000 data, 15 epoch -> 63% accuracy
-# 200,000 data, 15 epoch -> 74.3% accuracy
-hm_data = 200000
+hm_data = 2000000
 
 batch_size = 32
-total_batches = int(1600000/batch_size)
 hm_epochs = 10
 
 x = tf.placeholder('float')
 y = tf.placeholder('float')
 
-# 이 경우는 2 layer면 충분하고, 레이어가 늘어나면 overfitting이 일어날 수 있음.
+
+current_epoch = tf.Variable(1)
+
 hidden_1_layer = {'f_fum':n_nodes_hl1,
                   'weight':tf.Variable(tf.random_normal([2638, n_nodes_hl1])),
                   'bias':tf.Variable(tf.random_normal([n_nodes_hl1]))}
@@ -37,13 +34,20 @@ output_layer = {'f_fum':None,
                 'weight':tf.Variable(tf.random_normal([n_nodes_hl2, n_classes])),
                 'bias':tf.Variable(tf.random_normal([n_classes])),}
 
+
 def neural_network_model(data):
+
     l1 = tf.add(tf.matmul(data,hidden_1_layer['weight']), hidden_1_layer['bias'])
     l1 = tf.nn.relu(l1)
+
     l2 = tf.add(tf.matmul(l1,hidden_2_layer['weight']), hidden_2_layer['bias'])
     l2 = tf.nn.relu(l2)
+
     output = tf.matmul(l2,output_layer['weight']) + output_layer['bias']
+
     return output
+
+saver = tf.train.Saver()
 
 def use_neural_network(input_data):
     prediction = neural_network_model(x)
@@ -52,7 +56,7 @@ def use_neural_network(input_data):
         
     with tf.Session() as sess:
         sess.run(tf.initialize_all_variables())
-        saver.restore(sess, getdata.get('model.ckpt'))
+        saver.restore(sess, getdata.get("model.ckpt"))
         current_words = word_tokenize(input_data.lower())
         current_words = [lemmatizer.lemmatize(i) for i in current_words]
         features = np.zeros(len(lexicon))

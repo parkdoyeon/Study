@@ -36,12 +36,14 @@ def init_process(fin,fout):
 			print(str(e))
 	outfile.close()
 
+# 데이터는 여기에 http://help.sentiment140.com/for-students/
 init_process(getdata.get('training.1600000.processed.noemoticon.csv'),getdata.get('train_set.csv'))
 init_process(getdata.get('testdata.manual.2009.06.14.csv'),getdata.get('test_set.csv'))
 
 
 def create_lexicon(fin):
 	lexicon = []
+	
 	with open(fin, 'r', buffering=100000, encoding='latin-1') as f:
 		try:
 			counter = 1
@@ -59,8 +61,10 @@ def create_lexicon(fin):
 		except Exception as e:
 			print(str(e))
 
+	
 	with open(getdata.get('lexicon-2500-2638.pickle'),'wb') as f:
 		pickle.dump(lexicon,f)
+	
 
 create_lexicon(getdata.get('train_set.csv'))
 

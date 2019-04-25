@@ -5,7 +5,6 @@ import nltk
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 import getdata
-
 lemmatizer = WordNetLemmatizer()
 
 n_nodes_hl1 = 500
@@ -46,9 +45,8 @@ def neural_network_model(data):
     output = tf.matmul(l2,output_layer['weight']) + output_layer['bias']
     return output
 
-# 오퍼레이션에 텐서 변수를 저장하도록 함
 saver = tf.train.Saver()
-tf_log = '/data/tf.log'
+
 
 def train_neural_network(x):
     prediction = neural_network_model(x)
@@ -58,7 +56,7 @@ def train_neural_network(x):
         sess.run(tf.initialize_all_variables())
         try:
 			# 마지막 epoch을 읽어오도록 함
-            epoch = int(open(tf_log,'r').read().split('\n')[-2])+1
+            epoch = int(open(getdata.get('tf.log'),'r').read().split('\n')[-2])+1
             print('STARTING:',epoch)
         except:
             epoch = 1
@@ -68,7 +66,7 @@ def train_neural_network(x):
             if epoch != 1:
                 saver.restore(sess, getdata.get('model.ckpt'))
             epoch_loss = 1
-            with open(getdata.get('lexicon.pickle'),'rb') as f:
+            with open(getdata.get('lexicon-2500-2638.pickle'),'rb') as f:
                 lexicon = pickle.load(f)
             with open(getdata.get('train_set_shuffled.csv'), buffering=20000, encoding='latin-1') as f:
                 batch_x = []
@@ -102,7 +100,7 @@ def train_neural_network(x):
 
             saver.save(sess, getdata.get('model.ckpt'))
             print('Epoch', epoch, 'completed out of',hm_epochs,'loss:',epoch_loss)
-            with open(tf_log,'a') as f:
+            with open(getdata.get('tf.log'),'a') as f:
                 f.write(str(epoch)+'\n') 
             epoch +=1
 
@@ -111,7 +109,7 @@ def train_neural_network(x):
 def test_neural_network():
     prediction = neural_network_model(x)
     with tf.Session() as sess:
-        sess.run(tf.initialize_all_variables())
+        sess.run(tf.global_variables_initializer())
         for epoch in range(hm_epochs):
             try:
                 saver.restore(sess, getdata.get('model.ckpt'))
@@ -124,7 +122,7 @@ def test_neural_network():
         feature_sets = []
         labels = []
         counter = 0
-        with open('data/processed-test-set.csv', buffering=20000) as f:
+        with open(getdata.get('processed-test-set.csv'), buffering=20000) as f:
             for line in f:
                 try:
                     features = list(eval(line.split('::')[0]))
@@ -140,4 +138,9 @@ def test_neural_network():
         print('Accuracy:',accuracy.eval({x:test_x, y:test_y}))
 
 test_neural_network()
+
+
+
+
+
 
