@@ -55,7 +55,7 @@ def create_lexicon(fin):
 					content += ' '+tweet
 					words = word_tokenize(content)
 					words = [lemmatizer.lemmatize(i) for i in words]
-					lexicon = list(set(lexicon + words))
+					lexicon = list(set(lexicon + words)) #단어끼리 합친 배열만든다음에, set으로 바꿔서 중복 제거
 					print(counter, len(lexicon))
 
 		except Exception as e:

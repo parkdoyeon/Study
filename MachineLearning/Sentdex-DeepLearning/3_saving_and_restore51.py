@@ -89,11 +89,11 @@ def train_neural_network(x):
                     line_y = eval(label)
                     batch_x.append(line_x)
                     batch_y.append(line_y)
-                    if len(batch_x) >= batch_size:
+                    if len(batch_x) >= batch_size: # 배치 단위가 올때마다만 텐서를 실행시킨다 
                         _, c = sess.run([optimizer, cost], feed_dict={x: np.array(batch_x),
-                                                                  y: np.array(batch_y)})
+                                                                  y: np.array(batch_y)}) #딕셔너리 형태로 feeding, 아까 선언했던 x와 y에 값을 넣어줌
                         epoch_loss += c
-                        batch_x = []
+                        batch_x = [] # 작업 후 초기화
                         batch_y = []
                         batches_run +=1
                         print('Batch run:',batches_run,'/',total_batches,'| Epoch:',epoch,'| Batch Loss:',c,)
@@ -135,7 +135,7 @@ def test_neural_network():
         print('Tested',counter,'samples.')
         test_x = np.array(feature_sets)
         test_y = np.array(labels)
-        print('Accuracy:',accuracy.eval({x:test_x, y:test_y}))
+        print('Accuracy:',  accuracy.eval({x:test_x, y:test_y}))
 
 test_neural_network()
 
