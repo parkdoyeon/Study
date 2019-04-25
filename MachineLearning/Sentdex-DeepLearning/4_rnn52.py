@@ -3,7 +3,7 @@ from tensorflow.examples.tutorials.mnist import input_data
 from tensorflow.contrib import rnn
 mnist = input_data.read_data_sets("/tmp/data/", one_hot = True)
 
-hm_epochs = 10
+hm_epochs = 3
 n_classes = 10
 batch_size = 128
 
@@ -35,7 +35,7 @@ def train_neural_network(x):
     optimizer = tf.train.AdamOptimizer().minimize(cost)
     
     with tf.Session() as sess:
-        sess.run(tf.initialize_all_variables())
+        sess.run(tf.tf.global_variables_initializer())
 
         for epoch in range(hm_epochs):
             epoch_loss = 0
