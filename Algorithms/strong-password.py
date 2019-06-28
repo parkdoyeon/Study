@@ -35,17 +35,10 @@ def minimumNumber(n, password):
 #     for case in cases:
 #         if not re.search(case, password):
 #             count += 1
-
-#     return max(count, 6 - n)
+#     return max(count, 6 - n) # 문제가 되는 갯수 vs 늘어나야할 갯수
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
-
     n = int(input())
-
     password = input()
     answer = minimumNumber(n, password)
-
-    fptr.write(str(answer) + '\n')
-
-    fptr.close()
+    print(str(answer) + '\n')
