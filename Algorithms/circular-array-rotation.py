@@ -1,4 +1,5 @@
-#!/bin/python3
+# https://www.hackerrank.com/challenges/circular-array-rotation/problem
+# 내 풀이
 
 import math
 import os
@@ -10,7 +11,7 @@ import sys
 def circularArrayRotation(a, k, queries): 
     '''
     slicing은 범위에 대한 표현이기때문에 인덱스 범위 체크를 하지 않는다.
-    k가 전체 길이보다 커져버리면 a[-k:]는 전체배열을 리턴하기 때문에, 원점으로 돌아오는 시점을 제외하고 카운트하는게 적절하다.
+    k가 전체 길이보다 커져버리면 a[-k:]는 전체배열을 리턴하기 때문에, 원점으로 돌아오는 시점을 제외하고 그 나머지만 카운트하는게 적절하다.
     '''
     k = k%n if k >len(a) else k 
     

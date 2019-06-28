@@ -23,7 +23,7 @@ def birthday(s, d, m):
 # 위의 로직에서 변형
 def birthday(s, d, m):
     count = 0
-    if m > d: return 0
+    if m > d: return count
 
     for i in range(len(s)):
         if len(s[i:i+m]) != m: break # [1, 2, 3][:0]은 []을 리턴한다! 주의할것.
