@@ -23,21 +23,29 @@ def alternate(s):
     return count 
 
 
+# def chkvalidity(one, two, lis):
+#     chars = set(lis) - set(one) - set(two) # 사용할 단어 제외
+#     tup = tuple(chars)
+#     for i in tup: lis = lis.replace(i, '') # 사용할 단어만 남기고 제거
+    
+#     pre = ''
+#     ok, count = (True, len(lis))
+#     for i in lis: # 이전 값이랑 중복 있는지 체크
+#         if pre == '':
+#             pre = i
+#             continue
+#         if pre == i:
+#             ok = False
+#             break
+#         pre = i
+#     return ok, count
+
+# 정규식을 통해 반복찾기
 def chkvalidity(one, two, lis):
     chars = set(lis) - set(one) - set(two) # 사용할 단어 제외
     tup = tuple(chars)
     for i in tup: lis = lis.replace(i, '') # 사용할 단어만 남기고 제거
-    
-    pre = ''
-    ok, count = (True, len(lis))
-    for i in lis: # 이전 값이랑 중복 있는지 체크
-        if pre == '':
-            pre = i
-            continue
-        if pre == i:
-            ok = False
-            break
-        pre = i
+    ok, count = ( re.search('\S*(.)\1\S*', lis), len(lis))
     return ok, count
 
 
