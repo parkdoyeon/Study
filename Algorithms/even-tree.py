@@ -1,5 +1,5 @@
 #!/bin/python3
-
+#https://www.hackerrank.com/challenges/even-tree/forum
 import math
 import os
 import random
@@ -10,7 +10,7 @@ import sys
 def evenForest(t_nodes, t_edges, t_from, t_to):
     weight = [1]*t_nodes
     for i in range(len(t_to)):
-        search_queue = [t_from[i]]
+        search_queue = [t_from[i]] # 이 edge와 연결된 모든 노드를 찾아 weight를 올려줄 예정
         while len(search_queue) != 0:
             for j in range(len(t_to)):
                 if search_queue[-1:][0] == t_to[j]: # 마지막 요소와 연결된 노드 확인
