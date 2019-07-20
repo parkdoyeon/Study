@@ -9,12 +9,12 @@ import sys
 
 # Complete the pairs function below.
 # 딕셔너리/집합이 더 리스트보다 검색속도가 빠르다 정해진 내장규척을 통해 해싱이 되어있기때문에 집합을 iterable하게 바꿔도 순서가 바뀌진 않는다.
-def pairs(k, arr):
-    arr = set(arr)
-    ret = 0
-    for i in arr:
-        if i-k in arr: ret += 1
-    return ret
+# def pairs(k, arr):
+#     arr = set(arr)
+#     ret = 0
+#     for i in arr:
+#         if i-k in arr: ret += 1
+#     return ret
 
 # 딕셔너리 
 def pairs(a, k)
