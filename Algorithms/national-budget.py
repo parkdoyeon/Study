@@ -47,7 +47,6 @@ def good_solution(budgets, M):
 
 
 l, r, mid = 1, max(budgets), 0
-answer = 0
 while l <= r:
     mid = l+r//2
     ret_sum = 0
