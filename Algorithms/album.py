@@ -14,6 +14,8 @@
 #                 answer.extend([song[1] for song in album_bysong[key][:2]])
 #                 break
 
+from operator import itemgetter
+
 def solution(genres, plays):
     genre_play_dict = defaultdict(lambda: 0)
     for genre, play in zip(genres, plays):
