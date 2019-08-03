@@ -13,18 +13,17 @@ def solution(scoville, K):
 
 import heapq
 
-def heapsolution(scoville, K):
-    sco = scoville
-    print(sco)
+def solution(scoville, K):
+    heapq.heapify(scoville)
     answer = 0
-    while sco[0] < K:
-        if len(sco) < 3: return -1
+    while scoville[0] < K:
+        if len(scoville) < 2: return -1
         answer += 1
-        heapq.heappush(sco, heapq.heappop(sco)+(heapq.heappop(sco)*2))
-        print(sco)
+        heapq.heappush(scoville, heapq.heappop(scoville)+heapq.heappop(scoville)*2)
     
     return answer
 
+일반 .pop()함수도 오래걸렸다
 
 def chk(arr, n):
     for a in arr:
