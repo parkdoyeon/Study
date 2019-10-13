@@ -1,8 +1,9 @@
 def print_two_d(arr):
     for row in arr:
-        print(row)
+        print(' '.join(map(str, row)))
 
-N = 7
+N = int(input())
+target = int(input())
 dr = [[-1]*N for i in range(N)]
 middle = N//2
 col, row = (middle, middle)
@@ -11,7 +12,7 @@ num = 1
 flag = N*N
 dr[middle][middle] = num
 dr[0][0] = flag
-print_two_d(dr)
+
 while num < flag:
     # up
     for i in range(abs(up)):
@@ -19,7 +20,6 @@ while num < flag:
         num += 1
         if num >= flag: break
         dr[col][row] = num
-        print_two_d(dr)
     up = up+2 if up > 0 else up-2
     #print_two_d(dr)
     if num >= flag :break
@@ -47,3 +47,11 @@ while num < flag:
     #print_two_d(dr)
 
 print_two_d(dr)
+c, r = (-1, -1)
+for ridx in range(N):
+    for cidx in range(N):
+        if dr[ridx][cidx] == target:
+            c, r = (cidx, ridx)
+            break
+    if c is not -1: break
+print(str(r+1)+' '+str(c+1))
