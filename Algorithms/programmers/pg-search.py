@@ -15,4 +15,4 @@ def check(arr, ans):
     return right
 
 # ==는 값비교, is는 레퍼런스비교. 
-# None, True, False 비교할때만 is 사용해야함
+# None, True, False 비교할때만 is 사용하는것이 안전함
