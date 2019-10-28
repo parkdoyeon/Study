@@ -1,7 +1,4 @@
 braket = str(input())
-#l, r = (0, 0)
-ar = list(braket)
-found = True
 cnt, n = (0, 0)
 for b in braket:
     if b is '(': n += 1

@@ -1,4 +1,4 @@
-#N = int(input())
+N = int(input())
 braket = str(input())
 cnt, n, other = (0, 0, 0)
 for b in braket:
