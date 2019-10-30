@@ -4,16 +4,16 @@
 #         self.val = x
 #         self.left = None
 #         self.right = None
-
+import math
 class Solution:
     def isValidBST(self, root: TreeNode) -> bool:
-        return checkNode(root, -9999, -9999)
+        return checkNode(root, -math.inf, math.inf)
         
         
 def checkNode(node: TreeNode, min: int, max: int) -> bool:
     if node is None:
         return True
-    if node.val >= min and node.val <= max:
+    if node.val <= min or node.val >= max:
         return False
     
-    return checkNode(node.right, min, node.val) and checkNode(node.left, node.val, max)
+    return checkNode(node.right, node.val, max) and checkNode(node.left, min, node.val)
