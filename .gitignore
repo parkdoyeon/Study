@@ -129,3 +129,4 @@ dmypy.json
 !.vscode/extensions.json
 MachineLearning/Sentdex-DeepLearning/.vscode/settings.json
 MachineLearning/Sentdex-DeepLearning/data/
+.vscode/settings.json
