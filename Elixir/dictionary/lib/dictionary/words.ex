@@ -1,8 +1,15 @@
 defmodule Dictionary.Words do
 
-  def random_word(words) do
-    words
-    |> Enum.random()
+  #@me :fred #module attribute라고 함, 전역변수로 활용
+  @me __MODULE__
+
+  def start_link() do
+    Agent.start_link(&word_list/0, name: @me)
+  end
+
+  def random_word() do
+    #Agent.get(agent, &Enum.random/1) 파라미터로 agent를 받음
+    Agent.get(@me, &Enum.random/1)
   end
 
   def word_list() do

@@ -14,6 +14,8 @@ defmodule Dictionary.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
+      #module
+      mod: { Dictionary.Application, [] },
       extra_applications: [:logger]
     ]
   end
