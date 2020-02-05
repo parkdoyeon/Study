@@ -9,6 +9,9 @@ defmodule Dictionary.Words do
 
   def random_word() do
     #Agent.get(agent, &Enum.random/1) 파라미터로 agent를 받음
+    if :rand.uniform < 0.33 do
+      Agent.get(@me, fn _ -> exit(:boom) end)
+    end
     Agent.get(@me, &Enum.random/1)
   end
 
