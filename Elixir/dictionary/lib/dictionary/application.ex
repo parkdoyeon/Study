@@ -4,7 +4,7 @@ defmodule Dictionary.Application do
 
   #아래 함수를 작성하고 mix.exs에 mod필드에 등록을 해주면 아래 함수가 런타임에 자동으로 실행된다.
   def start(_type, _args) do
-    #수퍼바이저는 반드시 Application이 되는 모듈안에만 작성해야한다.
+    #수퍼바이저라이브러리를 적용하는 방법중하나는 Application에 작성하는 것이다.
     import Supervisor.Spec
 
     #이 워커모듈 안에 start_link로 되어있는 함수를 실행하도록 함
