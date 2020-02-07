@@ -14,6 +14,8 @@ defmodule TextClient.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
+      #hangman을 코드에 포함시키되 실행하지는 않는다. 이 옵션이 빠지면 자동으로 Hangman서버가 시작된다.
+      included_applications: [ :hangman ],
       extra_applications: [:logger]
     ]
   end
