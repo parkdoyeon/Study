@@ -15,6 +15,9 @@ defmodule Gallows.Views.Helpers.GameStateHelper do
   end
 
   defp alert(nil), do: ""
+  # 클라이언트로 이스케이프 없이 문자열을 전송할때 보안이슈가 생기므로 주의해야한다.
+  # 가능하면 raw()함수를 통해 전달하거나
+  # { :safe, str }형태로 리턴하면 eex파일이 알아서 리스폰스를 처리한다.
   defp alert({ class, message }) do
     """
     <div class="alert alert-#{class}">
